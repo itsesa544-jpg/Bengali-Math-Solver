@@ -1,0 +1,7 @@
+{
+  "name": "Copy of Bengali Math Solver",
+  "description": "An AI-powered application to solve mathematical problems by text or image input, providing solutions in Bengali.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

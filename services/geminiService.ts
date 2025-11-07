@@ -1,7 +1,14 @@
 import { GoogleGenAI, Modality } from "@google/genai";
 import { OutputFormat } from "../types";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+const getAiClient = () => {
+    const apiKey = process.env.API_KEY;
+    if (!apiKey) {
+        throw new Error("API_KEY is not configured in environment variables.");
+    }
+    return new GoogleGenAI({ apiKey });
+};
+
 const modelName = 'gemini-2.5-flash';
 const imageModelName = 'gemini-2.5-flash-image';
 
@@ -24,6 +31,7 @@ export const solveMathProblem = async (
     promptParts: (string | { inlineData: { mimeType: string; data: string } })[],
     format: OutputFormat
 ): Promise<string> => {
+    const ai = getAiClient();
     const modelParts = promptParts.map(part => {
         if (typeof part === 'string') {
             return { text: part };
@@ -57,6 +65,7 @@ export const fileToBase64 = (file: File): Promise<{mimeType: string, data: strin
 };
 
 export const generateGraphFromText = async (problemText: string): Promise<string> => {
+    const ai = getAiClient();
     const fullPrompt = `Please generate a clear, simple, black and white line graph for the following mathematical equation or problem. The graph should be the primary focus, without any extra text or labels on the image itself. Problem: ${problemText}`;
     
     const response = await ai.models.generateContent({

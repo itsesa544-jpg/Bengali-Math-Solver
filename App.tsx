@@ -72,7 +72,11 @@ const App: React.FC = () => {
       }
     } catch (err) {
       console.error(err);
-      setError('সমাধান তৈরি করতে একটি ত্রুটি ঘটেছে। অনুগ্রহ করে আবার চেষ্টা করুন।');
+      if (err instanceof Error && err.message.includes("API_KEY is not configured")) {
+        setError('ত্রুটি: API কী সেট করা হয়নি। অনুগ্রহ করে আপনার অ্যাডমিনের সাথে যোগাযোগ করুন।');
+      } else {
+        setError('সমাধান তৈরি করতে একটি ত্রুটি ঘটেছে। অনুগ্রহ করে আবার চেষ্টা করুন।');
+      }
     } finally {
       setIsLoading(false);
     }

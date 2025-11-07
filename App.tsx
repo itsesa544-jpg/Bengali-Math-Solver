@@ -125,11 +125,7 @@ const App: React.FC = () => {
 
     } catch (err) {
       console.error(err);
-      if (err instanceof Error && err.message.includes("API_KEY is not configured")) {
-        setError('ত্রুটি: Google Gemini API কী সেট করা হয়নি। আপনি যদি এই অ্যাপ্লিকেশনটির অ্যাডমিন হন, অনুগ্রহ করে আপনার হোস্টিং প্ল্যাটফর্মের এনভায়রনমেন্ট ভেরিয়েবলে `API_KEY` সেট করুন।');
-      } else {
-        setError('সমাধান তৈরি করতে একটি ত্রুটি ঘটেছে। অনুগ্রহ করে আবার চেষ্টা করুন।');
-      }
+      setError('সমাধান তৈরি করতে একটি ত্রুটি ঘটেছে। অনুগ্রহ করে আবার চেষ্টা করুন।');
     } finally {
       setIsLoading(false);
     }

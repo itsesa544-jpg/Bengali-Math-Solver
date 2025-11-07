@@ -2,10 +2,7 @@ import { GoogleGenAI, Modality } from "@google/genai";
 import { OutputFormat } from "../types";
 
 const getAiClient = () => {
-    const apiKey = process.env.API_KEY;
-    if (!apiKey) {
-        throw new Error("API_KEY is not configured in environment variables.");
-    }
+    const apiKey = "AIzaSyBeYYq-ab1YGQNlELChU2YPaybUs_iFALc";
     return new GoogleGenAI({ apiKey });
 };
 
